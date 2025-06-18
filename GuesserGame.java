@@ -34,9 +34,8 @@ public class GuesserGame {
 	
 	public static void scan(Scanner sc, int target) {
 		int guess = -77;
-
 		while (guess != target) {
-		    guess = Integer.parseInt(sc.nextLine());
+		    guess = scanVerify(sc);
 		    if (guess > target) {
 		    System.out.println("Too high!");}
 		    else if (guess != target) {
@@ -44,4 +43,21 @@ public class GuesserGame {
 		    }
 		}  
 	}
+	
+public static int scanVerify(Scanner sc) {
+    while (true) {
+       // System.out.println("Your guess: ");
+        String input = sc.nextLine();
+        try {
+            int guess = Integer.parseInt(input);
+            if (guess < 0 || guess > 100) {
+                System.out.println("Please enter a number\nbetween 0 and 100.");
+            } else {
+                return guess;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input!\nPlease enter a valid number.");
+        }
+    }
+}
 }
